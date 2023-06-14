@@ -3,15 +3,18 @@
 import React from "react";
 import apiZipCode from "@/services/apiZipCode";
 import apiWeather from "@/services/apiWeather";
+import InfosWeather from "@/components/InfosWeather";
+import Loading from "@/components/Loading";
 
 const Home = () => {
   const [weatherInfo, setWeatherInfo] = React.useState<any>(null);
   const [data, setData] = React.useState<any>(null);
   const [city, setCity] = React.useState("itamonte");
+  const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
     apiZipCode(city, setWeatherInfo);
-  }, []);
+  }, [city]);
 
   React.useEffect(() => {
     if (weatherInfo) {
@@ -19,19 +22,11 @@ const Home = () => {
     }
   }, [weatherInfo]);
 
-  console.log(data);
-  console.log(weatherInfo);
-
+  if (loading) return <Loading />;
   return (
     <div>
       <h1>Clima de hoje</h1>
-      <p>{weatherInfo && weatherInfo[0].name}</p>
-      <p>{weatherInfo && weatherInfo[0].state}</p>
-      <p>{weatherInfo && weatherInfo[0].country}</p>
-      <p>{data && data.main.temp}°C</p>
-      <p>{data && data.weather[0].description}</p>
-      <p>{data && data.clouds.all}%</p>
-      <p>{data && data.main.humidity} humidade</p>
+      <InfosWeather data={data} weatherInfo={weatherInfo} />
     </div>
   );
 };
