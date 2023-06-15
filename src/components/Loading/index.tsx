@@ -7,11 +7,11 @@ const Loading = () => {
       <div className={styles.loader}>
         <p>loading</p>
         <div className={styles.words}>
-          <span className={styles.word}>Procurando por informações meteorológicas</span>
-          <span className={styles.word}>Obtendo dados meteorológicos</span>
-          <span className={styles.word}>Coletando dados precisos sobre o clima</span>
-          <span className={styles.word}>Montando o prognóstico do tempo</span>
-          <span className={styles.word}>Fazendo mágica meteorológica</span>
+          <span className={styles.word}>Clima</span>
+          <span className={styles.word}>Céu azul</span>
+          <span className={styles.word}>Ventos</span>
+          <span className={styles.word}>Temperaturas</span>
+          <span className={styles.word}>Nuvens</span>
         </div>
       </div>
     </div>

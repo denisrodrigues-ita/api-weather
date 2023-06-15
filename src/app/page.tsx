@@ -9,24 +9,27 @@ import Loading from "@/components/Loading";
 const Home = () => {
   const [weatherInfo, setWeatherInfo] = React.useState<any>(null);
   const [data, setData] = React.useState<any>(null);
-  const [city, setCity] = React.useState("itamonte");
+  const [city, setCity] = React.useState("nova iguaçu");
   const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
-    apiZipCode(city, setWeatherInfo);
+    apiZipCode(city, setWeatherInfo, setLoading);
   }, [city]);
 
   React.useEffect(() => {
     if (weatherInfo) {
-      apiWeather(weatherInfo[0].lat, weatherInfo[0].lon, setData);
+      apiWeather(weatherInfo.lat, weatherInfo.lon, setData, setLoading);
     }
   }, [weatherInfo]);
 
-  if (loading) return <Loading />;
   return (
     <div>
       <h1>Clima de hoje</h1>
-      <InfosWeather data={data} weatherInfo={weatherInfo} />
+      {loading && <Loading />}
+      {data && weatherInfo && !loading && (
+        <InfosWeather data={data} weatherInfo={weatherInfo} />
+        
+      )}
     </div>
   );
 };
