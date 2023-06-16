@@ -1,7 +1,10 @@
 import React from "react";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+import useCentral from "@/services/useCentral";
 
-const InfosWeather = ({ data, weatherInfo }: any) => {
+const InfosWeather = () => {
+  const { data, weatherInfo, city } = useCentral();
+
   const capitalizeWords = (sentence: string) => {
     const words = sentence.split(" ");
     const capitalizedWords = words.map(
@@ -20,7 +23,7 @@ const InfosWeather = ({ data, weatherInfo }: any) => {
   };
 
   return (
-    <>
+    <React.Fragment key={city}>
       <div className="flex my-4">
         {weatherInfo && (
           <p>
@@ -66,7 +69,7 @@ const InfosWeather = ({ data, weatherInfo }: any) => {
           </div>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 
