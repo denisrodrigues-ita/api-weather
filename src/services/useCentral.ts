@@ -4,30 +4,41 @@ import React from "react";
 import apiZipCode from "./apiZipCode";
 import apiWeather from "./apiWeather";
 
-const useCentral = () => {
-  const [weatherInfo, setWeatherInfo] = React.useState<any>(null);
+
+const useCentral = async () => {
+
   const [data, setData] = React.useState<any>(null);
   const [city, setCity] = React.useState("lima");
   const [loading, setLoading] = React.useState(false);
 
-  React.useEffect(() => {
-    if (city) {
-      apiZipCode(city, setWeatherInfo, setLoading);
-    }
-  }, [city]);
+  debugger
+  // if (city) {
+  //   await apiZipCode(city, setWeatherInfo, setLoading);
+  // }
 
-  console.log("weatherInfo", weatherInfo)
-  console.log("data", data)
-  console.log("city", city)
+  // if (weatherInfo) {
+  //   await apiWeather(weatherInfo.lat, weatherInfo.lon, setData, setLoading);
+  // }
 
-  React.useEffect(() => {
-    if (weatherInfo) {
-      apiWeather(weatherInfo.lat, weatherInfo.lon, setData, setLoading);
-    }
-  }, [weatherInfo]);
+  // React.useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (city) {
+  //       await apiZipCode(city, setWeatherInfo, setLoading);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [city]);
 
-  return { data, weatherInfo, loading, city, setCity };
+  // React.useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (weatherInfo) {
+  //       await apiWeather(weatherInfo.lat, weatherInfo.lon, setData, setLoading);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [weatherInfo]);
+
+  // return { data, weatherInfo, loading, city, setCity };
 };
 
 export default useCentral;
-

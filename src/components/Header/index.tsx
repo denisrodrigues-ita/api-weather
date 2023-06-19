@@ -2,18 +2,43 @@
 
 import React from "react";
 import useCentral from "@/services/useCentral";
+import { useCentralContext } from "@/CentralContext";
 
-const Header: React.FC<any> = ({ weatherInfo }) => {
-  const { setCity } = useCentral();
-  const [inputValue, setInputValue] = React.useState("");
+const Header: React.FC<any> = () => {
+  const { weatherInfo, setWeatherInfo } = useCentralContext();
+  const { cityInfo, setCityInfo } = useCentralContext();
+  const [city, setCity] = React.useState("");
+
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // debugger
+    // setCityInfo(event.target.value);
+    setCity(event.target.value);
+  };
+
+  // const handleCity = () => {
+  //   const cityFormat = city.replace(" ", "+");
+  //   const fetchData = async () => {
+  //     setLoading(true);
+  //     const timestamp = new Date().getTime();
+  //     const response = await fetch(
+  //       `${process.env.URL_ZIP_CODE}q=${cityFormat}&appid=${process.env.API_KEY}&timestamp=${timestamp}`
+  //     );
+  //     const result = await response.json();
+  //     setWeatherInfo(result[0]);
+  //     const responses = await fetch(
+  //       `${process.env.URL_WEATHER}lat=${result[0].lat}&lon=${result[0].lon}&appid=${process.env.API_KEY}&units=metric&lang=pt_br&timestamp=${timestamp}`
+  //     );
+  //     const results = await responses.json();
+  //     setData(results);
+  //     setLoading(false);
+  //   };
+  //   fetchData();
+  // }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setCity(inputValue);
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+    setCityInfo(city);
   };
 
   return (
@@ -30,7 +55,7 @@ const Header: React.FC<any> = ({ weatherInfo }) => {
           <input
             type="text"
             placeholder="Digite aqui a cidade que procura"
-            value={inputValue}
+            value={city}
             onChange={handleChange}
           />
           <button type="submit">Atualizar</button>

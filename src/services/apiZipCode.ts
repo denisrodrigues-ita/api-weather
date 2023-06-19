@@ -7,8 +7,9 @@ const apiZipCode = async (
 
   try {
     setLoading(true);
+    const timestamp = new Date().getTime(); 
     const response = await fetch(
-      `${process.env.URL_ZIP_CODE}q=${cityFormat}&appid=${process.env.API_KEY}`
+      `${process.env.URL_ZIP_CODE}q=${cityFormat}&appid=${process.env.API_KEY}&timestamp=${timestamp}`
     );
     const result = await response.json();
     setWeatherInfo(result[0]);

@@ -1,9 +1,10 @@
+"use client";
+
 import React from "react";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
-import useCentral from "@/services/useCentral";
 
-const InfosWeather = () => {
-  const { data, weatherInfo, city } = useCentral();
+const InfosWeather = ({ data, weatherInfo }: any) => {
+  // console.log(data?.weather[0].icon);
 
   const capitalizeWords = (sentence: string) => {
     const words = sentence.split(" ");
@@ -23,7 +24,7 @@ const InfosWeather = () => {
   };
 
   return (
-    <React.Fragment key={city}>
+    <>
       <div className="flex my-4">
         {weatherInfo && (
           <p>
@@ -43,11 +44,11 @@ const InfosWeather = () => {
       </div>
       <div className="flex items-center">
         <div className="flex flex-col items-center">
-          {data && (
+          {/* {data && (
             <img
               src={`https://openweathermap.org/img/wn/${data?.weather[0]?.icon}@2x.png`}
             />
-          )}
+          )} */}
           {data && <p>{capitalizeWords(data?.weather[0]?.description)}</p>}
         </div>
         <div className="flex">
@@ -69,7 +70,7 @@ const InfosWeather = () => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

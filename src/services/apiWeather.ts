@@ -6,10 +6,12 @@ const apiWeather = async (
 ) => {
   try {
     setLoading(true);
+    const timestamp = new Date().getTime(); 
     const response = await fetch(
-      `${process.env.URL_WEATHER}lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&units=metric&lang=pt_br`
+      `${process.env.URL_WEATHER}lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&units=metric&lang=pt_br&timestamp=${timestamp}`
     );
     const result = await response.json();
+    debugger
     setData(result);
   } catch (error) {
     throw error;
@@ -17,5 +19,6 @@ const apiWeather = async (
     setLoading(false);
   }
 };
+
 
 export default apiWeather;
