@@ -9,11 +9,10 @@ const Home = () => {
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState(null);
   const { weatherInfo, setWeatherInfo } = useCentralContext();
-  const { cityInfo, setCityInfo } = useCentralContext();
-  const [city, setCity] = React.useState("São Paulo");
+  const { cityInfo } = useCentralContext();
+  const city = "São Paulo";
 
   React.useEffect(() => {
-
     const cityFormat = city.replace(" ", "+");
 
     const fetchData = async () => {
@@ -35,11 +34,7 @@ const Home = () => {
   }, []);
 
   React.useEffect(() => {
-
-    debugger
-    if(cityInfo){
-      debugger
-
+    if (cityInfo) {
       const cityFormat = cityInfo.replace(" ", "+");
 
       const fetchData = async () => {
@@ -58,14 +53,11 @@ const Home = () => {
         setLoading(false);
       };
       fetchData();
-
     }
-
   }, [cityInfo]);
 
   return (
     <div>
-      <h1>Clima de hoje</h1>
       {loading ? (
         <Loading />
       ) : (

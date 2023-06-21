@@ -4,8 +4,6 @@ import React from "react";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 
 const InfosWeather = ({ data, weatherInfo }: any) => {
-  // console.log(data?.weather[0].icon);
-
   const capitalizeWords = (sentence: string) => {
     const words = sentence.split(" ");
     const capitalizedWords = words.map(
@@ -25,48 +23,53 @@ const InfosWeather = ({ data, weatherInfo }: any) => {
 
   return (
     <>
-      <div className="flex my-4">
+      <div className="flex mt-4">
         {weatherInfo && (
-          <p>
+          <h2>
             {weatherInfo?.name}, {weatherInfo?.state}, {weatherInfo?.country}
-          </p>
+          </h2>
         )}
       </div>
-      <div className="my-4">
-        <div className="flex items-center">
-          <SunIcon className="h-4 w-4" />
-          {data && <p>Nascer do Sol: {convertDate(data?.sys?.sunrise)}</p>}
-        </div>
-        <div className="flex items-center">
-          <MoonIcon className="h-4 w-4" />
-          {data && <p>Pôr do Sol: {convertDate(data?.sys?.sunset)}</p>}
-        </div>
-      </div>
-      <div className="flex items-center">
-        <div className="flex flex-col items-center">
-          {/* {data && (
-            <img
-              src={`https://openweathermap.org/img/wn/${data?.weather[0]?.icon}@2x.png`}
-            />
-          )} */}
-          {data && <p>{capitalizeWords(data?.weather[0]?.description)}</p>}
-        </div>
-        <div className="flex">
+
+      <div className="flex mb-4">
+        <div className="flex items-center gap-4">
           {data && (
-            <p className="text-5xl flex bg-stone-100 rounded-full p-4 drop-shadow-lg">
+            <p className="text-5xl flex bg-stone-100 rounded p-4 drop-shadow-lg justify-center h-full items-center">
               {(data?.main?.temp).toFixed(0)}
               <span className="text-base font-bold">°C</span>
             </p>
           )}
-          <div className="flex flex-col ml-4">
-            {data && <p>Nebulozidade: {data?.clouds?.all}%</p>}
-            {data && <p>Umidade: {data?.main?.humidity}%</p>}
+          <div className="flex flex-col">
             {data && (
-              <p>
-                Vento: {`${((data?.wind?.speed * 60 * 60) / 1000).toFixed(2)}`}{" "}
-                k/h
+              <img
+                src={`https://openweathermap.org/img/wn/${data?.weather[0]?.icon}@2x.png`}
+              />
+            )}
+            {data && (
+              <p className="">
+                {capitalizeWords(data?.weather[0]?.description)}
               </p>
             )}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col">
+        {data && <p>Nebulozidade: {data?.clouds?.all}%</p>}
+        {data && <p>Umidade: {data?.main?.humidity}%</p>}
+        {data && (
+          <p>
+            Vento: {`${((data?.wind?.speed * 60 * 60) / 1000).toFixed(2)}`} k/h
+          </p>
+        )}
+        <div className="my-4">
+          <div className="flex items-center">
+            <SunIcon className="h-4 w-4" />
+            {data && <p>Nascer do Sol: {convertDate(data?.sys?.sunrise)}</p>}
+          </div>
+          <div className="flex items-center">
+            <MoonIcon className="h-4 w-4" />
+            {data && <p>Pôr do Sol: {convertDate(data?.sys?.sunset)}</p>}
           </div>
         </div>
       </div>

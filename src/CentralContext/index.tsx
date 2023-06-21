@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { createContext, useState, useContext } from "react";
 
@@ -23,12 +23,11 @@ export const CentralProvider: React.FC<CentralContextProps> = ({
   const [weatherInfo, setWeatherInfo] = useState<any>(null);
   const [cityInfo, setCityInfo] = useState<any>(null);
 
-
   const value: CentralContextValue = {
     weatherInfo,
     setWeatherInfo,
     cityInfo,
-    setCityInfo
+    setCityInfo,
   };
 
   return (
