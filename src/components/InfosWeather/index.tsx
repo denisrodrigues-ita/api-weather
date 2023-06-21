@@ -46,7 +46,7 @@ const InfosWeather = ({ data, weatherInfo }: any) => {
               />
             )}
             {data && (
-              <p className="">
+              <p className="text-center">
                 {capitalizeWords(data?.weather[0]?.description)}
               </p>
             )}

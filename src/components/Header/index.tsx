@@ -3,8 +3,12 @@
 import React from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useCentralContext } from "@/CentralContext";
+import Day from "../../../public/svg/Day";
+import Night from "../../../public/svg/Night";
 
 const Header: React.FC<any> = () => {
+  const date = new Date();
+
   const { setCityInfo } = useCentralContext();
   const [city, setCity] = React.useState("");
 
@@ -19,9 +23,12 @@ const Header: React.FC<any> = () => {
   };
 
   return (
-    <header>
-      <div className="flex mb-8 bg-gradient-to-r from-cyan-500 to-blue-500 h-28"></div>
-      <div className="container">
+    <header className="bg-slate-400">
+      <div className="py-4 container">
+        {date.getHours() <= 18 && date.getHours() >= 6 ? <Day /> : <Night />}
+      </div>
+
+      <div className="container py-4">
         <form className="flex" action="submit" onSubmit={handleSubmit}>
           <input
             className="w-full md:w-1/2 lg:w-2/6 border-2 border-gray-300 rounded-s-md p-1"
