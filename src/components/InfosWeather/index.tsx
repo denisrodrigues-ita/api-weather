@@ -26,12 +26,13 @@ const InfosWeather = ({ data, weatherInfo }: any) => {
       <div className="flex mt-4">
         {weatherInfo && (
           <h2>
-            {weatherInfo?.name}, {weatherInfo?.state}, {weatherInfo?.country}
+            {weatherInfo?.name}, {weatherInfo?.state} {weatherInfo.state && ","}{" "}
+            {weatherInfo?.country}
           </h2>
         )}
       </div>
 
-      <div className="flex mb-4">
+      <div className="flex my-4">
         <div className="flex items-center gap-4">
           {data && (
             <p className="text-5xl flex bg-stone-100 rounded p-4 drop-shadow-lg justify-center h-full items-center">

@@ -1,16 +1,36 @@
 "use client";
 
-import React from "react";
+import React, { use } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useCentralContext } from "@/CentralContext";
 import Day from "../../../public/svg/Day";
 import Night from "../../../public/svg/Night";
+import Rain from "../../../public/svg/Rain";
+import Wind from "../../../public/svg/Wind";
+import Snow from "../../../public/svg/Snow";
+
 
 const Header: React.FC<any> = () => {
   const date = new Date();
 
-  const { setCityInfo } = useCentralContext();
+  const { setCityInfo, data } = useCentralContext();
   const [city, setCity] = React.useState("");
+
+  const climate = () => {
+    if (data) {
+      if (data.weather[0].main === "Rain") {
+        return <Rain />;
+      } else if (data.weather[0].main === "Snow") {
+        return <Snow />;
+      } else if (data.weather[0].main === "Wind") {
+        return <Wind />;
+      } else {
+        return (
+          date.getHours() <= 18 && date.getHours() >= 6 ? <Day /> : <Night />
+        );
+      }
+    }
+  }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCity(event.target.value);
@@ -25,7 +45,7 @@ const Header: React.FC<any> = () => {
   return (
     <header className="bg-slate-400">
       <div className="py-4 container">
-        {date.getHours() <= 18 && date.getHours() >= 6 ? <Day /> : <Night />}
+        { climate()}
       </div>
 
       <div className="container py-4">

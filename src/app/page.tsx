@@ -7,8 +7,8 @@ import { useCentralContext } from "@/CentralContext";
 
 const Home = () => {
   const [loading, setLoading] = React.useState(true);
-  const [data, setData] = React.useState(null);
-  const { weatherInfo, setWeatherInfo } = useCentralContext();
+  // const [data, setData] = React.useState(null);
+  const { weatherInfo, setWeatherInfo, data, setData } = useCentralContext();
   const { cityInfo } = useCentralContext();
   const city = "São Paulo";
 

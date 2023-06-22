@@ -9,6 +9,8 @@ interface CentralContextProps {
 interface CentralContextValue {
   weatherInfo: any;
   setWeatherInfo: React.Dispatch<React.SetStateAction<any>>;
+  data: any;
+  setData: React.Dispatch<React.SetStateAction<any>>;
   cityInfo: any;
   setCityInfo: any;
 }
@@ -21,6 +23,7 @@ export const CentralProvider: React.FC<CentralContextProps> = ({
   children,
 }) => {
   const [weatherInfo, setWeatherInfo] = useState<any>(null);
+  const [data, setData] = useState<any>(null);
   const [cityInfo, setCityInfo] = useState<any>(null);
 
   const value: CentralContextValue = {
@@ -28,6 +31,8 @@ export const CentralProvider: React.FC<CentralContextProps> = ({
     setWeatherInfo,
     cityInfo,
     setCityInfo,
+    data,
+    setData,
   };
 
   return (
