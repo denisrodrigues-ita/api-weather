@@ -4,10 +4,11 @@ import React from "react";
 import InfosWeather from "@/components/InfosWeather";
 import Loading from "@/components/Loading";
 import { useCentralContext } from "@/CentralContext";
+import PageNotFound from "@/app/PageNotFound/Page";
 
 const Home = () => {
   const [loading, setLoading] = React.useState(true);
-  // const [data, setData] = React.useState(null);
+  const [error, setError] = React.useState(false);
   const { weatherInfo, setWeatherInfo, data, setData } = useCentralContext();
   const { cityInfo } = useCentralContext();
   const city = "São Paulo";
@@ -35,6 +36,7 @@ const Home = () => {
 
   React.useEffect(() => {
     if (cityInfo) {
+      setError(false);
       const cityFormat = cityInfo.replace(" ", "+");
 
       const fetchData = async () => {
@@ -44,6 +46,11 @@ const Home = () => {
           `${process.env.URL_ZIP_CODE}q=${cityFormat}&appid=${process.env.API_KEY}&timestamp=${timestamp}`
         );
         const result = await response.json();
+        if (result.length === 0) {
+          setLoading(false);
+          setError(true);
+          return;
+        }
         setWeatherInfo(result[0]);
         const responses = await fetch(
           `${process.env.URL_WEATHER}lat=${result[0].lat}&lon=${result[0].lon}&appid=${process.env.API_KEY}&units=metric&lang=pt_br&timestamp=${timestamp}`
@@ -60,6 +67,8 @@ const Home = () => {
     <div>
       {loading ? (
         <Loading />
+      ) : error ? (
+        <PageNotFound />
       ) : (
         <InfosWeather data={data} weatherInfo={weatherInfo} />
       )}

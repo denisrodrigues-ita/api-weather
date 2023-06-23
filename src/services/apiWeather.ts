@@ -11,7 +11,7 @@ const apiWeather = async (
       `${process.env.URL_WEATHER}lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&units=metric&lang=pt_br&timestamp=${timestamp}`
     );
     const result = await response.json();
-    setData(result);
+    setData(result[0]);
   } catch (error) {
     throw error;
   } finally {
