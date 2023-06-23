@@ -4,7 +4,7 @@ function Sun() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="500"
+      width="300"
       height="200"
       viewBox="0 0 423.944 590.15"
     >

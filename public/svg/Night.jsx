@@ -4,7 +4,7 @@ function Night() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="500"
+      width="300"
       height="200"
       data-name="Layer 1"
       viewBox="0 0 1088 687.962"

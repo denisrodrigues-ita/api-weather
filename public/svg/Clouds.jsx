@@ -1,10 +1,10 @@
 import React from "react";
 
-function Wind() {
+function Clouds() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="500"
+      width="300"
       height="200"
       data-name="Layer 1"
       viewBox="0 0 692.605 748.733"
@@ -109,4 +109,4 @@ function Wind() {
   );
 }
 
-export default Wind;
+export default Clouds;

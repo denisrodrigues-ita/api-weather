@@ -6,9 +6,9 @@ import { useCentralContext } from "@/CentralContext";
 import Day from "../../../public/svg/Day";
 import Night from "../../../public/svg/Night";
 import Rain from "../../../public/svg/Rain";
-import Wind from "../../../public/svg/Wind";
+import Clouds from "../../../public/svg/Clouds";
 import Snow from "../../../public/svg/Snow";
-
+import Mist from "../../../public/svg/Mist";
 
 const Header: React.FC<any> = () => {
   const date = new Date();
@@ -17,20 +17,22 @@ const Header: React.FC<any> = () => {
   const [city, setCity] = React.useState("");
 
   const climate = () => {
-    if (data) {
-      if (data.weather[0].main === "Rain") {
-        return <Rain />;
-      } else if (data.weather[0].main === "Snow") {
-        return <Snow />;
-      } else if (data.weather[0].main === "Wind") {
-        return <Wind />;
-      } else {
-        return (
-          date.getHours() <= 18 && date.getHours() >= 6 ? <Day /> : <Night />
-        );
-      }
+    if (data?.weather[0]?.main === "Rain") {
+      return <Rain />;
+    } else if (data?.weather[0]?.main === "Snow") {
+      return <Snow />;
+    } else if (data?.weather[0]?.main === "Mist") {
+      return <Mist />;
+    } else if (data?.weather[0]?.main === "Clouds") {
+      return <Clouds />;
+    } else {
+      return date.getHours() <= 18 && date.getHours() >= 6 ? (
+        <Day />
+      ) : (
+        <Night />
+      );
     }
-  }
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCity(event.target.value);
@@ -44,9 +46,7 @@ const Header: React.FC<any> = () => {
 
   return (
     <header className="bg-slate-400">
-      <div className="py-4 container">
-        { climate()}
-      </div>
+      <div className="py-4 container">{climate()}</div>
 
       <div className="container py-4">
         <form className="flex" action="submit" onSubmit={handleSubmit}>
