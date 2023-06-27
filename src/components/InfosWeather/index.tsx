@@ -3,7 +3,12 @@
 import React from "react";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 
-const InfosWeather = ({ data, weatherInfo }: any) => {
+interface InfosWeatherProps {
+  data: any;
+  weatherInfo: any;
+}
+
+const InfosWeather = ({ data, weatherInfo }: InfosWeatherProps) => {
   const capitalizeWords = (sentence: string) => {
     const words = sentence.split(" ");
     const capitalizedWords = words.map(
@@ -66,11 +71,11 @@ const InfosWeather = ({ data, weatherInfo }: any) => {
         <div className="my-4">
           <div className="flex items-center">
             <SunIcon className="h-4 w-4" />
-            {data && <p>Nascer do Sol: {convertDate(data?.sys?.sunrise)}</p>}
+            {data && <p>Nascer do Sol às {convertDate(data?.sys?.sunrise)}</p>}
           </div>
           <div className="flex items-center">
             <MoonIcon className="h-4 w-4" />
-            {data && <p>Pôr do Sol: {convertDate(data?.sys?.sunset)}</p>}
+            {data && <p>Pôr do Sol às {convertDate(data?.sys?.sunset)}</p>}
           </div>
         </div>
       </div>

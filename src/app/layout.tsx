@@ -1,9 +1,7 @@
-import { Inter } from "next/font/google";
+
 import Header from "@/components/Header";
 import { CentralProvider } from "@/CentralContext";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Tempo Hoje",
@@ -18,7 +16,7 @@ export default function RootLayout({
   return (
     <CentralProvider>
       <html lang="pt-br">
-        <body className={`${inter.className}`}>
+        <body>
           <Header />
           <main>{children}</main>
         </body>

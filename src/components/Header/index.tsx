@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use } from "react";
+import React from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useCentralContext } from "@/CentralContext";
 import Day from "../../../public/svg/Day";
