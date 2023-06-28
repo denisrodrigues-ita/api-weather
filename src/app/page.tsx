@@ -4,7 +4,7 @@ import React from "react";
 import InfosWeather from "@/components/InfosWeather";
 import Loading from "@/components/Loading";
 import { useCentralContext } from "@/CentralContext";
-import PageNotFound from "@/app/PageNotFound/Page";
+import CityNotFound from "@/app/CityNotFound/page";
 
 const Home = () => {
   const [loading, setLoading] = React.useState(true);
@@ -68,7 +68,7 @@ const Home = () => {
       {loading ? (
         <Loading />
       ) : error ? (
-        <PageNotFound />
+        <CityNotFound />
       ) : (
         <InfosWeather data={data} weatherInfo={weatherInfo} />
       )}

@@ -1,6 +1,6 @@
 import React from "react";
 
-function NotFound() {
+function CityNotFound() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -154,4 +154,4 @@ function NotFound() {
   );
 }
 
-export default NotFound;
+export default CityNotFound;

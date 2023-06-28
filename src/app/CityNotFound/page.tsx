@@ -1,6 +1,6 @@
-import NotFound from "../../../public/svg/NotFound";
+import NotFound from "../../../public/svg/CityNotFound";
 
-const PageNotFound = () => {
+const CityNotFound = () => {
   return (
     <div className="flex flex-col justify-center items-center gap-8 mt-16">
       <h2>Cidade não encontrada :(</h2>
@@ -9,4 +9,4 @@ const PageNotFound = () => {
   );
 };
 
-export default PageNotFound;
+export default CityNotFound;
