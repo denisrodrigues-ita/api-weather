@@ -1,4 +1,3 @@
-
 import Header from "@/components/Header";
 import { CentralProvider } from "@/CentralContext";
 import "./globals.css";
